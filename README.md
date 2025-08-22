@@ -5,7 +5,7 @@
 
 - SQL.
 
-# 📃 Creación de archivos:
+# 📃 Creación de pruebas:
 
 🔵 Objetivo: verificar cuántos taxis hay actualmente en las calles.
 
