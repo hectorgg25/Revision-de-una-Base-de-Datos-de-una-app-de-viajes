@@ -73,7 +73,7 @@ Pasos:
 
 Esto sirve para ajustar la flota, renegociar con compañías, mejorar la lógica de tarifas y garantizar la fiabilidad de los datos.
 
-Liga don el archivo de resultados:
+Liga del archivo de resultados:
 https://docs.google.com/document/d/1_bnsUho_VOJYdWpZ9nTX8IBi-vBx3Naw?rtpof=true&usp=drive_fs
 
 
