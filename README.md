@@ -61,7 +61,7 @@ Pasos:
 
 # 📝 Ejecución de pruebas:
 
-🔴 La ejecucion de las pruebas arriba mencionadas nos ayudara a lo siguinete:
+🔴 La ejecucion de las pruebas arriba mencionadas nos ayuda a lo siguiente:
 
 ¿Tenemos suficientes taxis?
 
