@@ -1,79 +1,100 @@
-# PROYECTO Sprint 6 - Héctor Gamboa
-# Pruebas en Base de Datos de la App URBAN Routes 🚕 
- 
-# 📚Técnicas - Tecnologías utilizadas:
+## Ejercicio - Pruebas en la Aplicación de Taxis 🚕 // BASE DE DATOS
 
-- SQL.
+### Introducción 🌟
+Este proyecto se centra en evaluar y mejorar el funcionamiento de una aplicación de taxis. Abarca dos aspectos importantes: la gestión de logs (registros de actividad) y el análisis de la base de datos que contiene información sobre los taxis, los viajes y las condiciones meteorológicas.
 
-# 📃 Creación de pruebas:
+A través de una serie de ejercicios, se identifican las solicitudes provenientes de ciertas direcciones IP, manejar errores en el sistema, y verificar la cantidad de taxis disponibles y su desempeño según diferentes condiciones climáticas. 
 
-🔵 Objetivo: verificar cuántos taxis hay actualmente en las calles.
+El objetivo final es asegurarnos de que el servicio de taxi sea eficiente, confiable y esté alineado con las expectativas de los usuarios.
 
-Pasos:
+---
 
--Conectarse a la base de datos chicago_taxi.
+### Servidor 🌐
 
--Contar el número de automóviles en la tabla cabs.
+#### 1: Encontrar Solicitudes de una Dirección IP
+LA tarea es averiguar qué solicitudes provienen de una dirección IP que comienza con "233.201".  
+**Los registros están en:** `logs/2019/12`.
 
-* Resultado esperado: número total de taxis + consulta usada.
+**Pasos a seguir:**
+- Se escribe el comando que usamos para obtener los registros. 🔍
+- Incluye un ejemplo de los registros encontrados, como: `184.79.247.161 - - [30/12/2019:21:38:13 +0000] "PUT /alerts HTTP/1.1" 400 3557`.
 
-🟢 Objetivo: analizar cuántos taxis tiene cada compañía.
+---
 
-Pasos:
+#### 2: Manejo de Errores ⚠️
+Hubo errores en el sistema el `12/30/2019`, específicamente errores `400` y `500`.  
+**Pasos a seguir:**
+- Guarda estos registros en un archivo separado. 🗂️
+- Crea una carpeta llamada `bug1` y organiza los registros de manera que haya un archivo principal llamado `main.txt` y otro para cada error (400 y 500).
 
-Contar los autos agrupados por company_name (compañia).
+**Lo que necesitas enviar:**
+- Los comandos para crear las carpetas `bug1` y `events`. 📁
+- Los comandos para seleccionar los registros que irán en `main.txt`.
+- Los comandos para mover los registros a los archivos `400.txt` y `500.txt`.
 
--Usar HAVING para filtrar compañías con menos de 100 autos.
+---
 
--Ordenar en orden descendente por cantidad.
+### Base de Datos 📊
 
-* Resultado esperado: lista de compañías con menos de 100 autos + consulta usada.
+#### Información sobre los Datos 📝
+- **Tabla de Barrios:**
+  - `neighborhood_id`: número del barrio.
+  - `name`: nombre del barrio.
 
-🟡 Objetivo: verificar el cálculo del coeficiente de viajes según el clima.
+- **Tabla de Taxis:**
+  - `cab_id`: número único del taxi.
+  - `vehicle_id`: identificador del vehículo.
+  - `company_name`: nombre de la compañía dueña del taxi.
 
-Pasos:
+- **Tabla de Viajes:**
+  - `trip_id`: número del viaje.
+  - `cab_id`: número del taxi que se usó.
+  - `start_ts`: hora de inicio del viaje.
+  - `end_ts`: hora de fin del viaje.
+  - `duration_seconds`: cuánto duró el viaje (en segundos).
+  - `distance_miles`: cuántas millas recorrió el viaje.
+  - `pickup_location_id`: barrio donde comenzó el viaje.
+  - `dropoff_location_id`: barrio donde terminó el viaje.
 
--Tomar datos de la tabla weather_records.
+- **Tabla de Clima:**
+  - `record_id`: número del registro del clima.
+  - `ts`: fecha y hora de la medición.
+  - `temperature`: temperatura en el momento de la medición.
+  - `description`: descripción de las condiciones climáticas (por ejemplo, "lluvia ligera").
 
--Clasificar con CASE:
+**Nota:** No hay un vínculo directo entre los viajes y el clima en la base de datos. Se pueden conectar por la hora de inicio del viaje y la hora de la observación del clima.
 
--Bad si la descripción contiene “rain” o “storm”.
+#### 1: Número de Taxis en Circulación 🚖
+**Objetivo:** Averiguar cuántos taxis hay disponibles en las calles.  
+- **Comando que necesitas incluir:**
+- Cuenta cuántos automóviles hay en `cabs`.
 
--Good en otros casos.
+---
 
--Seleccionar entre 11-05-2017 00:00 y 11-06-2017 00:00.
+#### 2: Taxis por Compañía 🏢
+Cuenta cuántos taxis tiene cada compañía, ordénalos de mayor a menor, y muestra solo aquellas con menos de `100` taxis.  
+**Comando que necesitas incluir:**
 
-* Resultado esperado: tabla con columnas (ts, weather_conditions) + consulta usada.
+---
 
-🔴 Objetivo: comprobar número de viajes de cada compañía en fechas específicas.
+#### 3: Cálculo del Costo del Viaje 💰
+**Objetivo:** Verificar si el costo del viaje se está calculando correctamente según el clima. 🌦️
+- Usa un método que clasifique el clima como "bueno" o "malo".
+- Haz una selección de datos entre `11-05-2017 12:00 am` y `11-06-2017 12:00 am`.
 
-Pasos:
+**Comando que necesitas incluir:**
 
--Conectar tablas cabs y trips.
+---
 
--Agrupar por company_name.
+#### 4: Número de Viajes por Compañía 📈
+Obtén el número de viajes que realizó cada compañía los días `15` y `16 de noviembre de `2017`, y muestra el nombre de la compañía y la cantidad de viajes.  
+**Comando que necesitas incluir:**
 
--Contar viajes (trips_amount) en 15 y 16 de noviembre de 2017.
+---
 
--Ordenar por trips_amount en orden descendente.
+### Conclusión 🎯
+Este proyecto nos ayuda a verificar cómo están funcionando los taxis, cómo manejar los errores en los registros y a revisar los datos en la base de datos para mejorar el servicio.
 
-* Resultado esperado: tabla con compañías y número de viajes + consulta usada.
+---
 
-# 📝 Ejecución de pruebas:
-
-🔴 La ejecucion de las pruebas arriba mencionadas nos ayuda a lo siguiente:
-
-¿Tenemos suficientes taxis?
-
-¿Cómo se distribuyen por compañía?
-
-¿El cálculo de tarifas es correcto según el clima?
-
-¿La cantidad de viajes coincide con lo reportado?
-
-Esto sirve para ajustar la flota, renegociar con compañías, mejorar la lógica de tarifas y garantizar la fiabilidad de los datos.
-
-Liga del archivo de resultados:
-https://docs.google.com/document/d/1_bnsUho_VOJYdWpZ9nTX8IBi-vBx3Naw?rtpof=true&usp=drive_fs
-
-
+Si necesitas más ajustes o adiciones, no dudes en decírmelo.
